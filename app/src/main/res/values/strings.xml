@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Split</string>
+
+    // Bill list
+    <string name="bill_list_title">Bills</string>
+    <string name="add_bill_option">Create a bill</string>
+    <string name="add_people_option">Add people</string>
+    <string name="add_bottom_sheet_title">Please choose:</string>
+    <string name="history_menu_item">History</string>
+</resources>
