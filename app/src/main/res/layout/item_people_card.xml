@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/avatar"
+        style="@style/Split.Button.Avatar"
+        android:layout_width="@dimen/people_avatar_size"
+        android:layout_height="@dimen/people_avatar_size"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/medium_space"
+        android:background="@drawable/bg_circle_avatar"
+        tools:text="Leon"/>
+</FrameLayout>

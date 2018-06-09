@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.naturecurly.split.SplitApplication
 import com.naturecurly.split.injection.components.DaggerScreenComponent
 import com.naturecurly.split.injection.components.ScreenComponent
+import com.naturecurly.split.injection.modules.ScreenModule
 import com.naturecurly.split.presentation.presenters.BasePresenter
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
@@ -20,8 +21,10 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val screenComponent = DaggerScreenComponent.builder()
                 .applicationComponent(SplitApplication.appComponent)
+                .screenModule(ScreenModule(this))
                 .build()
         initDagger(screenComponent)
+        presenter.onCreate()
     }
 
     override fun onResume() {

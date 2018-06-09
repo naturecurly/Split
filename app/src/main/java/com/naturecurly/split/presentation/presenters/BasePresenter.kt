@@ -4,6 +4,7 @@ package com.naturecurly.split.presentation.presenters
  * @author Leon Wu
  */
 interface BasePresenter {
+    fun onCreate() {}
 
     fun onStart() {}
 

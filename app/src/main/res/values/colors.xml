@@ -4,11 +4,32 @@
     <color name="colorPrimaryDark">#004c40</color>
     <color name="colorAccent">#48a999</color>
 
-    // raw colours
+    <!-- raw colours -->
     <color name="white">#FFFFFF</color>
     <color name="material_teal">#48a999</color>
     <color name="material_gray">#e0e0e0</color>
+    <color name="light_blue">#01579b</color>
+    <color name="material_pink">#c2185b</color>
+    <color name="material_orange">#e65100</color>
+    <color name="blue_gray">#455a64</color>
+    <color name="brown">#5d4037</color>
+    <color name="green">#2e7d32</color>
+    <color name="cyan">#00838f</color>
+    <color name="purple">#6a1b9a</color>
 
     <color name="bottom_bar">@color/material_teal</color>
     <color name="divider">@color/material_gray</color>
+
+    <!-- Random avatar background -->
+    <array name="avatar_background_list">
+        <item>@color/material_teal</item>
+        <item>@color/light_blue</item>
+        <item>@color/material_pink</item>
+        <item>@color/material_orange</item>
+        <item>@color/blue_gray</item>
+        <item>@color/brown</item>
+        <item>@color/green</item>
+        <item>@color/cyan</item>
+        <item>@color/purple</item>
+    </array>
 </resources>
