@@ -25,6 +25,11 @@ class PeopleManager @Inject constructor(private val context: Context,
                 personDatabase.personDao().insert(PersonData(name = personName, backgroundColor = randamColor()))
             }.subscribeOn(Schedulers.io())
 
+    override fun deletePerson(id: Long) =
+            Single.fromCallable {
+                personDatabase.personDao().deleteById(id)
+            }.subscribeOn(Schedulers.io())
+
     private fun randamColor(): Int {
         val colorArray = context.resources.getIntArray(R.array.avatar_background_list)
         val random = Random()

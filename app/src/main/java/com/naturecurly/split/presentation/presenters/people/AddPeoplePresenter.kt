@@ -1,7 +1,9 @@
 package com.naturecurly.split.presentation.presenters.people
 
+import android.database.sqlite.SQLiteConstraintException
 import com.naturecurly.split.domain.data.Person
 import com.naturecurly.split.domain.usercases.people.AddPersonUseCase
+import com.naturecurly.split.domain.usercases.people.DeletePersonUseCase
 import com.naturecurly.split.domain.usercases.people.GetAllPeopleUseCase
 import com.naturecurly.split.presentation.presenters.BasePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -11,7 +13,8 @@ import javax.inject.Inject
  * @author Leon Wu
  */
 class AddPeoplePresenter @Inject constructor(private val addPersonUseCase: AddPersonUseCase,
-                                             private val getAllPeopleUseCase: GetAllPeopleUseCase) : BasePresenter {
+                                             private val getAllPeopleUseCase: GetAllPeopleUseCase,
+                                             private val deletePersonUseCase: DeletePersonUseCase) : BasePresenter {
 
     private lateinit var view: AddPeoplePresenter.View
     private lateinit var router: AddPeoplePresenter.Router
@@ -30,14 +33,39 @@ class AddPeoplePresenter @Inject constructor(private val addPersonUseCase: AddPe
     }
 
     fun onAddButtonClicked(name: String) {
-        view.clearPersonInputField()
-        addPersonUseCase.addPerson(name)
+        if (name.isNotEmpty()) {
+            view.clearPersonInputField()
+            addPersonUseCase.addPerson(name)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        view.hideSameNameError()
+                        loadPeople(isFirstLoad = false)
+                    }, {
+                        when (it) {
+                            is SQLiteConstraintException -> {
+                                view.showSameNameError()
+                            }
+                        }
+                    })
+        } else {
+            view.showEmptyNameError()
+        }
+    }
+
+    fun onBackPressed(isDeleteButtonShown: Boolean) {
+        if (isDeleteButtonShown) {
+            view.clearDeleteButton()
+        } else {
+            view.back()
+        }
+    }
+
+    fun onDeleteButtonClicked(id: Long, position: Int) {
+        deletePersonUseCase.deletePerson(id)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    loadPeople(isFirstLoad = false)
-                }, {
-
-                })
+                    view.removePersonFromList(position)
+                }, {})
     }
     // endregion
 
@@ -58,6 +86,12 @@ class AddPeoplePresenter @Inject constructor(private val addPersonUseCase: AddPe
         fun showAllPeople(people: List<Person>)
         fun clearPersonInputField()
         fun scrollListToBottom()
+        fun showSameNameError()
+        fun hideSameNameError()
+        fun clearDeleteButton()
+        fun back()
+        fun removePersonFromList(position: Int)
+        fun showEmptyNameError()
     }
 
     interface Router {

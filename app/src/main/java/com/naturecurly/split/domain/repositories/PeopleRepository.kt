@@ -7,4 +7,5 @@ import io.reactivex.Single
 interface PeopleRepository {
     fun getAllPeople(): Maybe<List<Person>>
     fun insertPerson(personName: String): Single<Unit>
+    fun deletePerson(id: Long): Single<Unit>
 }

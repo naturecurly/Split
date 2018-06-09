@@ -20,7 +20,7 @@ import javax.inject.Inject
 /**
  * @author Leon Wu
  */
-class AddPeopleActivity : BaseActivity(), AddPeoplePresenter.View, AddPeoplePresenter.Router {
+class AddPeopleActivity : BaseActivity(), AddPeoplePresenter.View, AddPeoplePresenter.Router, PeopleAdapter.OnDeleteButtonListener {
 
     companion object {
         fun newIntent(context: Context) = context.intentFor<AddPeopleActivity>()
@@ -49,10 +49,18 @@ class AddPeopleActivity : BaseActivity(), AddPeoplePresenter.View, AddPeoplePres
         add_people_button.onClick { presenter.onAddButtonClicked(add_people_edit_text.text.toString()) }
     }
 
+    override fun onBackPressed() {
+        presenter.onBackPressed(adapter.isDeleteButtonShown())
+    }
+
+    override fun onDeleteButtonClicked(id: Long, position: Int) {
+        presenter.onDeleteButtonClicked(id, position)
+    }
+
     // region Private Functions
     private fun setUpPeopleList() {
         people_list.layoutManager = gridLayoutManager
-        adapter = PeopleAdapter(this, listOf())
+        adapter = PeopleAdapter(this, arrayListOf(), this)
         people_list.adapter = adapter
     }
 
@@ -76,11 +84,33 @@ class AddPeopleActivity : BaseActivity(), AddPeoplePresenter.View, AddPeoplePres
     }
 
     override fun clearPersonInputField() {
-        add_people_edit_text.text.clear()
+        add_people_edit_text.text!!.clear()
     }
 
     override fun scrollListToBottom() {
-        people_list.smoothScrollToPosition(people_list.adapter.itemCount - 1)
+        people_list.smoothScrollToPosition(people_list.adapter!!.itemCount - 1)
+    }
+
+    override fun showSameNameError() {
+        add_people_text_input_layout.error = getString(R.string.same_name_error)
+    }
+
+    override fun hideSameNameError() {
+        add_people_text_input_layout.error = null
+    }
+
+    override fun clearDeleteButton() {
+        adapter.clearDeleteButton()
+    }
+
+    override fun back() = super.onBackPressed()
+
+    override fun removePersonFromList(position: Int) {
+        adapter.notifyItemRemoved(position)
+    }
+
+    override fun showEmptyNameError() {
+        add_people_text_input_layout.error = getString(R.string.no_name_error)
     }
     // endregion
 }

@@ -16,9 +16,11 @@
     <color name="green">#2e7d32</color>
     <color name="cyan">#00838f</color>
     <color name="purple">#6a1b9a</color>
+    <color name="red">#d32f2f</color>
 
     <color name="bottom_bar">@color/material_teal</color>
     <color name="divider">@color/material_gray</color>
+    <color name="semi_transparent">#df000000</color>
 
     <!-- Random avatar background -->
     <array name="avatar_background_list">

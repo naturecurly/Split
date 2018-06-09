@@ -9,10 +9,10 @@
         <item name="coordinatorLayoutStyle">@style/Widget.Support.CoordinatorLayout</item>
     </style>
 
-    <style name="Split"/>
+    <style name="Split" />
 
     <!-- Text -->
-    <style name="Split.Text"/>
+    <style name="Split.Text" />
 
     <style name="Split.Text.Title">
         <item name="android:fontFamily">@font/roboto_bold</item>
@@ -40,12 +40,13 @@
     </style>
 
     <!-- Button -->
-    <style name="Split.Button"/>
+    <style name="Split.Button" />
 
     <style name="Split.Button.Avatar">
         <item name="android:textSize">@dimen/large_text_size</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:background">@drawable/ripple_round_button</item>
     </style>
 
 </resources>
