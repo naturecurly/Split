@@ -37,6 +37,8 @@ class BillActivity : BaseActivity(), BillPresenter.View, BillPresenter.Router {
         fab_add.onClick { presenter.onAddButtonClicked() }
 
         add_people_option.onClick { presenter.onAddPeopleButtonClicked() }
+
+        add_bill_option.onClick { presenter.onAddBillButtonClicked() }
     }
 
     override fun onBackPressed() {
@@ -59,12 +61,20 @@ class BillActivity : BaseActivity(), BillPresenter.View, BillPresenter.Router {
     override fun showAddBottomDialog() {
         addBottomSheetBehavior?.state = BottomSheetBehavior.STATE_EXPANDED
     }
+
+    override fun hideAddBottomDialog() {
+        addBottomSheetBehavior?.state = BottomSheetBehavior.STATE_HIDDEN
+    }
     // endregion
 
     // region Router
 
     override fun navigateToAddPeopleScreen() {
         startActivity(AddPeopleActivity.newIntent(this))
+    }
+
+    override fun navigateToAddBillScreen() {
+        startActivity(AddBillActivity.newIntent(this))
     }
     // endregion
 }

@@ -2,6 +2,7 @@ package com.naturecurly.split.injection.components
 
 import com.naturecurly.split.injection.modules.ScreenModule
 import com.naturecurly.split.injection.scopes.PerScreen
+import com.naturecurly.split.presentation.ui.bill.AddBillActivity
 import com.naturecurly.split.presentation.ui.bill.BillActivity
 import com.naturecurly.split.presentation.ui.people.AddPeopleActivity
 import dagger.Component
@@ -15,4 +16,5 @@ import dagger.Component
 interface ScreenComponent {
     fun inject(activity: BillActivity)
     fun inject(activity: AddPeopleActivity)
+    fun inject(activity: AddBillActivity)
 }

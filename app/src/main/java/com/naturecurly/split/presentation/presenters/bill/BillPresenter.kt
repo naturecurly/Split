@@ -1,6 +1,7 @@
 package com.naturecurly.split.presentation.presenters.bill
 
 import com.naturecurly.split.presentation.presenters.BasePresenter
+import org.jetbrains.anko.doAsync
 import javax.inject.Inject
 
 /**
@@ -25,16 +26,18 @@ class BillPresenter @Inject constructor() : BasePresenter {
         router.navigateToAddPeopleScreen()
     }
 
-    fun onBackPressed() {
-
+    fun onAddBillButtonClicked() {
+        router.navigateToAddBillScreen()
     }
     // endregion
 
     interface Router {
         fun navigateToAddPeopleScreen()
+        fun navigateToAddBillScreen()
     }
 
     interface View {
         fun showAddBottomDialog()
+        fun hideAddBottomDialog()
     }
 }

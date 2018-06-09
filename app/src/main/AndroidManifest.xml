@@ -24,6 +24,10 @@
             android:name=".presentation.ui.people.AddPeopleActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".presentation.ui.bill.AddBillActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
