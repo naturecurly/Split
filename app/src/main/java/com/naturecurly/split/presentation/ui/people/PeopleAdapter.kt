@@ -10,7 +10,7 @@ import android.view.ViewOutlineProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.naturecurly.split.R
 import com.naturecurly.split.domain.data.Person
-import kotlinx.android.synthetic.main.item_people_card.view.*
+import kotlinx.android.synthetic.main.item_people_avatar.view.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.sdk25.coroutines.onLongClick
 
@@ -28,7 +28,7 @@ class PeopleAdapter(context: Context,
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = inflater.inflate(R.layout.item_people_card, parent, false)
+        val view = inflater.inflate(R.layout.item_people_avatar, parent, false)
         return ViewHolder(view)
     }
 
